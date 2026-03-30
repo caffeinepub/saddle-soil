@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Brand palette as OKLCH */
+    --brand-green: 0.26 0.06 150;
+    --brand-green-dark: 0.21 0.05 150;
+    --brand-orange: 0.55 0.16 45;
+    --brand-cream: 0.97 0.005 78;
+    --brand-brown: 0.24 0.035 52;
+    --brand-text: 0.19 0.018 60;
+    --brand-muted: 0.82 0.02 78;
+
+    /* Semantic tokens mapped to brand — white background */
+    --background: 1 0 0;
+    --foreground: 0.19 0.018 60;
+    --card: 0.97 0.005 78;
+    --card-foreground: 0.19 0.018 60;
+    --popover: 0.97 0.005 78;
+    --popover-foreground: 0.19 0.018 60;
+    --primary: 0.55 0.16 45;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.26 0.06 150;
+    --secondary-foreground: 1 0 0;
+    --muted: 0.94 0.01 78;
+    --muted-foreground: 0.45 0.02 70;
+    --accent: 0.26 0.06 150;
+    --accent-foreground: 1 0 0;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.88 0.01 78;
+    --input: 0.88 0.01 78;
+    --ring: 0.55 0.16 45;
+    --chart-1: 0.55 0.16 45;
+    --chart-2: 0.26 0.06 150;
+    --chart-3: 0.24 0.035 52;
+    --chart-4: 0.82 0.02 78;
+    --chart-5: 0.93 0.02 78;
+    --sidebar: 0.26 0.06 150;
+    --sidebar-foreground: 1 0 0;
+    --sidebar-primary: 0.55 0.16 45;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.21 0.05 150;
+    --sidebar-accent-foreground: 1 0 0;
+    --sidebar-border: 0.3 0.05 150;
+    --sidebar-ring: 0.55 0.16 45;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Barlow", sans-serif;
+  }
+
+  .font-condensed {
+    font-family: "Barlow Condensed", sans-serif;
+  }
+}
+
+@layer components {
+  .section-heading {
+    font-family: "Barlow Condensed", sans-serif;
+    @apply font-bold uppercase tracking-wide;
+  }
+
+  .btn-orange {
+    font-family: "Barlow Condensed", sans-serif;
+    @apply font-semibold uppercase tracking-widest px-8 py-3 rounded transition-all duration-200 hover:brightness-110 active:scale-95;
+    background-color: oklch(var(--brand-orange));
+    color: white;
+  }
+
+  .btn-dark {
+    font-family: "Barlow Condensed", sans-serif;
+    @apply font-semibold uppercase tracking-widest px-8 py-3 rounded transition-all duration-200 hover:brightness-125 active:scale-95;
+    background-color: oklch(0.19 0.018 60);
+    color: white;
+  }
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translateY(-18px) rotate(3deg) scale(1.02);
+  }
+  66% {
+    transform: translateY(-8px) rotate(-2deg) scale(0.98);
+  }
+}
+
+@keyframes hero-float-2 {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(-4deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
