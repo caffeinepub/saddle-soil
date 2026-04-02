@@ -14,6 +14,9 @@ const marathonOptions = [
   "Other",
 ];
 
+// Hidden: actual delivery address
+const DELIVERY_EMAIL = atob("bWJhdHRobTI1MDI1QGlpbXNpcm1hdXIuYWMuaW4=");
+
 export default function ContactSection() {
   const { actor } = useActor();
   const [form, setForm] = useState({
@@ -54,6 +57,19 @@ export default function ContactSection() {
         read: false,
       };
       if (actor) await actor.submitInquiry(inquiry);
+
+      // Forward inquiry to delivery address via mailto
+      const subject = encodeURIComponent(
+        `New Inquiry from ${form.name} - Saddle & Soil`,
+      );
+      const body = encodeURIComponent(
+        `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone || "—"}\nMarathon: ${form.marathon || "—"}\n\nMessage:\n${form.message}`,
+      );
+      const mailtoLink = `mailto:${DELIVERY_EMAIL}?subject=${subject}&body=${body}`;
+      const a = document.createElement("a");
+      a.href = mailtoLink;
+      a.click();
+
       setSuccess(true);
       setForm({ name: "", email: "", phone: "", marathon: "", message: "" });
     } catch {
@@ -101,18 +117,33 @@ export default function ContactSection() {
             </p>
             <div className="space-y-4 mb-10">
               {[
-                { icon: "\uD83D\uDCE7", label: "info@saddleandsoil.com" },
+                {
+                  icon: "\uD83D\uDCE7",
+                  label: "info@saddleandsoil.com",
+                  // Clicking opens mail client to actual hidden delivery address
+                  href: `mailto:${DELIVERY_EMAIL}`,
+                },
                 { icon: "\uD83D\uDCF1", label: "+91 80546 71900" },
                 { icon: "\uD83D\uDCCD", label: "Delhi, India" },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-3">
                   <span className="text-xl">{item.icon}</span>
-                  <span
-                    className="font-barlow text-sm"
-                    style={{ color: "oklch(0.40 0.020 65)" }}
-                  >
-                    {item.label}
-                  </span>
+                  {"href" in item && item.href ? (
+                    <a
+                      href={item.href}
+                      className="font-barlow text-sm hover:text-brand-orange transition-colors duration-200"
+                      style={{ color: "oklch(0.40 0.020 65)" }}
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <span
+                      className="font-barlow text-sm"
+                      style={{ color: "oklch(0.40 0.020 65)" }}
+                    >
+                      {item.label}
+                    </span>
+                  )}
                 </div>
               ))}
             </div>
