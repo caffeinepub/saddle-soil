@@ -102,8 +102,8 @@ export default function ContactSection() {
             <div className="space-y-4 mb-10">
               {[
                 { icon: "\uD83D\uDCE7", label: "info@saddleandsoil.com" },
-                { icon: "\uD83D\uDCF1", label: "+91 98765 43210" },
-                { icon: "\uD83D\uDCCD", label: "Mumbai, India" },
+                { icon: "\uD83D\uDCF1", label: "+91 80546 71900" },
+                { icon: "\uD83D\uDCCD", label: "Delhi, India" },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-3">
                   <span className="text-xl">{item.icon}</span>
@@ -218,7 +218,7 @@ export default function ContactSection() {
                     <input
                       id="contact-phone"
                       type="tel"
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 80546 71900"
                       value={form.phone}
                       onChange={update("phone")}
                       className={inputClass}
